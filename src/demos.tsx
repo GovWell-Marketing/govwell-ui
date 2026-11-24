@@ -24,7 +24,7 @@ type SwatchSpec = { name: string; token: string; hex: string };
 const CORE: SwatchSpec[] = [
   { name: 'Gold Standard', token: 'hope', hex: '#FEAF0E' },
   { name: 'Soft Black', token: 'soft-black', hex: '#121212' },
-  { name: 'Soft White', token: 'soft-white', hex: '#FCFCFA' },
+  { name: 'Soft White', token: 'soft-white', hex: '#FAFAF9' },
 ];
 
 // the systems palette: the greys the interface is built from

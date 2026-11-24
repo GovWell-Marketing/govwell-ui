@@ -199,7 +199,7 @@ class SquareSymbolizer implements PaintSymbolizer {
   draw(ctx: CanvasRenderingContext2D, geom: { x: number; y: number }[][]) {
     const s = this.size;
     ctx.fillStyle = this.fill();
-    ctx.strokeStyle = '#fcfcfa';
+    ctx.strokeStyle = '#fafaf9';
     ctx.lineWidth = 2;
     for (const points of geom) {
       for (const p of points) {

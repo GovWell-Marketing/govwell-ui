@@ -46,7 +46,7 @@ Brand palette (from the book):
 | Token        | Hex       | Role                                                           |
 | ------------ | --------- | -------------------------------------------------------------- |
 | `soft-black` | `#121212` | Core palette black (was Jet)                                   |
-| `soft-white` | `#fcfcfa` | Core palette white (was White)                                 |
+| `soft-white` | `#fafaf9` | Core palette white (was White)                                 |
 | `slate`      | `#000000` | Text on light; dark-mode ground (the site's body text is this) |
 | `concrete`   | `#7c7c7c` | Borders, disabled, decorative greys                            |
 | `cement`     | `#b1b1b1` | Borders and rules                                              |
