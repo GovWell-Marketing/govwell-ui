@@ -58,14 +58,23 @@ export function SampleLogin() {
 
   return (
     <div className="relative isolate grid min-h-dvh bg-slate text-foreground md:grid-cols-2">
-      {/* a GovWell brand photo, full bleed behind both halves; decorative, so no alt text */}
-      <img
-        src={`${import.meta.env.BASE_URL}sample/sign-in-landscape.webp`}
-        alt=""
-        className="absolute inset-0 -z-10 size-full object-cover"
-      />
+      {/* a GovWell brand photo, full bleed behind both halves; decorative, so no
+          alt text. Under md a portrait cut (the pixel flag up in the sky, the
+          valley below) replaces the landscape, whose flag the card would cover.
+          The picture is display: contents so the img stays the positioned layer */}
+      <picture className="contents">
+        <source media="(max-width: 767px)" srcSet={`${import.meta.env.BASE_URL}sample/sign-in-portrait.webp`} />
+        <img
+          src={`${import.meta.env.BASE_URL}sample/sign-in-landscape.webp`}
+          alt=""
+          className="absolute inset-0 -z-10 size-full object-cover"
+        />
+      </picture>
 
       {/* the card stays centred in the left half */}
+      {/* centred: on a phone that's the band between the portrait's two flags
+          (GovWell's up top, the US flag low on the right), so the card is
+          tighter there to leave both in view */}
       <main className="relative flex min-h-dvh items-center justify-center px-4 py-20">
         {/* for the demo only: a real sign-in has nowhere to go back to. A plain
             ghost button: black type reads on the photo's pale sky */}
@@ -73,24 +82,29 @@ export function SampleLogin() {
           <ArrowLeft data-icon="inline-start" /> Back
         </a>
         <div data-slot="sample-login" className="w-full max-w-md border border-border bg-card text-card-foreground shadow-lg">
-          <form onSubmit={submit} aria-labelledby={`${id}-title`} className="flex flex-col gap-6 p-8">
-            <div className="flex flex-col gap-2 text-center">
+          <form onSubmit={submit} aria-labelledby={`${id}-title`} className="flex flex-col gap-4 p-6 md:gap-6 md:p-8">
+            <div className="flex flex-col gap-1 text-center md:gap-2">
               <h1 id={`${id}-title`} className="text-2xl leading-tight font-normal tracking-tight">
                 Sign in to GovWell
               </h1>
-              <p className="text-muted-foreground">Welcome back! Please sign in to continue</p>
+              <p className="text-sm text-muted-foreground md:text-base">Welcome back! Please sign in to continue</p>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2 md:gap-3">
               <div className="relative">
-                <Button type="button" variant="outline" className="w-full" onClick={() => setStatus('This is a sample sign-in.')}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full max-md:h-10"
+                  onClick={() => setStatus('This is a sample sign-in.')}
+                >
                   <GoogleMark /> Continue with Google
                 </Button>
                 <span className="absolute -top-3 right-2 border border-border bg-card px-2 py-0.5 text-xs text-muted-foreground">
                   Last used
                 </span>
               </div>
-              <Button type="button" variant="outline" className="w-full" onClick={() => setStatus('This is a sample sign-in.')}>
+              <Button type="button" variant="outline" className="w-full max-md:h-10" onClick={() => setStatus('This is a sample sign-in.')}>
                 <MicrosoftMark /> Continue with Microsoft
               </Button>
             </div>
@@ -129,13 +143,15 @@ export function SampleLogin() {
             )}
           </form>
 
-          <div className="border-t border-border bg-muted px-8 py-5 text-center text-sm text-muted-foreground">
+          <div className="border-t border-border bg-muted px-6 py-3 text-center text-sm text-muted-foreground md:px-8 md:py-5">
             Don’t have an account?{' '}
             <a href="#sign-up" className={textLink}>
               Sign up
             </a>
           </div>
-          <div className="border-t border-border bg-muted px-8 py-4 text-center text-xs text-muted-foreground">Secured by Clerk</div>
+          <div className="border-t border-border bg-muted px-6 py-2.5 text-center text-xs text-muted-foreground md:px-8 md:py-4">
+            Secured by Clerk
+          </div>
         </div>
       </main>
 
