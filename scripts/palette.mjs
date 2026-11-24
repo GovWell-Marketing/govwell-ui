@@ -9,7 +9,7 @@
 // The brand palette, named as the book names it.
 export const BRAND = {
   'soft-black': '#121212',
-  'soft-white': '#fcfcfa',
+  'soft-white': '#fafaf9',
   slate: '#121212',
   concrete: '#7c7c7c',
   cement: '#b1b1b1',
@@ -52,25 +52,25 @@ export const TAG_FAMILIES = {
   'ribbon-400': '#690002',
   // a tag's type: black on every tint, white on the one fill too dark for it
   'tag-foreground': '#121212',
-  'tag-foreground-inverse': '#fcfcfa',
+  'tag-foreground-inverse': '#fafaf9',
 };
 
 // Light is the default: a white page with Slate type, as on govwell.com.
 export const LIGHT = {
   ...BRAND,
   ...TAG_FAMILIES,
-  background: '#fcfcfa',
+  background: '#fafaf9',
   foreground: '#121212',
-  card: '#fcfcfa',
+  card: '#fafaf9',
   'card-foreground': '#121212',
-  popover: '#fcfcfa',
+  popover: '#fafaf9',
   'popover-foreground': '#121212',
   // the main action is Hope with Slate type (white on Hope is 1.85:1)
   primary: '#feaf0e',
   'primary-foreground': '#121212',
   // the second action is a Slate block
   secondary: '#121212',
-  'secondary-foreground': '#fcfcfa',
+  'secondary-foreground': '#fafaf9',
   muted: '#ececec',
   // Concrete is 4.17:1 on white, just under AA; muted text is a step darker
   'muted-foreground': '#666666',
@@ -90,7 +90,7 @@ export const LIGHT = {
   warning: '#fec54e',
   'warning-foreground': '#121212',
   destructive: '#b90b0e',
-  'destructive-foreground': '#fcfcfa',
+  'destructive-foreground': '#fafaf9',
   error: '#b90b0e',
   // the eyebrow tints: each brand colour at 30% on the page
   'hope-tint': '#ffe7b7',
@@ -126,17 +126,17 @@ export const LIGHT = {
 export const DARK = {
   ...LIGHT,
   background: '#121212',
-  foreground: '#fcfcfa',
+  foreground: '#fafaf9',
   card: '#2a2a2a',
-  'card-foreground': '#fcfcfa',
+  'card-foreground': '#fafaf9',
   popover: '#2a2a2a',
-  'popover-foreground': '#fcfcfa',
-  secondary: '#fcfcfa',
+  'popover-foreground': '#fafaf9',
+  secondary: '#fafaf9',
   'secondary-foreground': '#121212',
   muted: '#2a2a2a',
   'muted-foreground': '#b1b1b1',
   accent: '#333333',
-  'accent-foreground': '#fcfcfa',
+  'accent-foreground': '#fafaf9',
   border: '#3d3d3d',
   input: '#7c7c7c',
   ring: '#feaf0e',
@@ -149,11 +149,11 @@ export const DARK = {
   // stronger than 30%: on Slate the muted versions read as Hope's and Field's tints
   'amber-tint': '#733711',
   'teal-tint': '#1f5a55',
-  'tint-foreground': '#fcfcfa',
+  'tint-foreground': '#fafaf9',
   gridline: '#333333',
   // on Slate, Hope leads and every series reads
   'chart-1': '#feaf0e',
-  'chart-2': '#fcfcfa',
+  'chart-2': '#fafaf9',
   'chart-3': '#41aaeb',
   'chart-4': '#39c25e',
   'chart-5': '#b1b1b1',
