@@ -10,7 +10,7 @@ Private because it serves GT Standard, which is licensed to GovWell.
 
 ## Items
 
-- `theme`: the palette (Jet, Slate, Concrete, Cement, Ash, Base, Hope, Sky,
+- `theme`: the palette (Soft Black, Soft White, Slate, Concrete, Cement, Ash, Base, Hope, Sky,
   Field, their tints, status colours), type, and the `base-grid` and
   `eyebrow-type` utilities. Light by default, dark on Slate.
 - `utils`, `use-color-mode`.

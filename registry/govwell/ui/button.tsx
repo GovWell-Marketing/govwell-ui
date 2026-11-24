@@ -3,13 +3,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-// Square buttons in GT Standard Light. The main action is a black block with
+// Buttons in GT Standard Light, with 3px corners (the one rounding the
+// square system allows, besides true circles). The main action is a black block with
 // white type (white with black type in dark mode, so it still shows on the
 // black ground) that turns Hope with black type on hover; the second is a
 // Slate block (white in dark mode). Secondary, outline and ghost share that
 // Hope hover. Sizes follow the site's 50px controls.
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-none border border-transparent text-base font-light whitespace-nowrap transition-colors outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-40 aria-invalid:border-error [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-[3px] border border-transparent text-base font-light whitespace-nowrap transition-colors outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-40 aria-invalid:border-error [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {

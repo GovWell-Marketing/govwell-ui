@@ -8,8 +8,9 @@
 
 // The brand palette, named as the book names it.
 export const BRAND = {
-  jet: '#000000',
-  slate: '#000000',
+  'soft-black': '#121212',
+  'soft-white': '#fcfcfa',
+  slate: '#121212',
   concrete: '#7c7c7c',
   cement: '#b1b1b1',
   ash: '#d9d9d9',
@@ -50,46 +51,46 @@ export const TAG_FAMILIES = {
   'ribbon-300': '#b90b0e',
   'ribbon-400': '#690002',
   // a tag's type: black on every tint, white on the one fill too dark for it
-  'tag-foreground': '#000000',
-  'tag-foreground-inverse': '#ffffff',
+  'tag-foreground': '#121212',
+  'tag-foreground-inverse': '#fcfcfa',
 };
 
 // Light is the default: a white page with Slate type, as on govwell.com.
 export const LIGHT = {
   ...BRAND,
   ...TAG_FAMILIES,
-  background: '#ffffff',
-  foreground: '#000000',
-  card: '#ffffff',
-  'card-foreground': '#000000',
-  popover: '#ffffff',
-  'popover-foreground': '#000000',
+  background: '#fcfcfa',
+  foreground: '#121212',
+  card: '#fcfcfa',
+  'card-foreground': '#121212',
+  popover: '#fcfcfa',
+  'popover-foreground': '#121212',
   // the main action is Hope with Slate type (white on Hope is 1.85:1)
   primary: '#feaf0e',
-  'primary-foreground': '#000000',
+  'primary-foreground': '#121212',
   // the second action is a Slate block
-  secondary: '#000000',
-  'secondary-foreground': '#ffffff',
+  secondary: '#121212',
+  'secondary-foreground': '#fcfcfa',
   muted: '#ececec',
   // Concrete is 4.17:1 on white, just under AA; muted text is a step darker
   'muted-foreground': '#666666',
   accent: '#ececec',
-  'accent-foreground': '#000000',
+  'accent-foreground': '#121212',
   border: '#d9d9d9',
   // a control's edge must reach 3:1 against the page: Concrete, not Ash
   input: '#7c7c7c',
-  ring: '#000000',
+  ring: '#121212',
   // status fills; Hope, Sky and Field always carry Slate type
   ok: '#39c25e',
-  'ok-foreground': '#000000',
+  'ok-foreground': '#121212',
   // the tags' colours: Blueprint 300 for info, Gold Standard 300 for a
   // warning, Ribbon Cutting 300 for errors and destructive actions
   info: '#40aaeb',
-  'info-foreground': '#000000',
+  'info-foreground': '#121212',
   warning: '#fec54e',
-  'warning-foreground': '#000000',
+  'warning-foreground': '#121212',
   destructive: '#b90b0e',
-  'destructive-foreground': '#ffffff',
+  'destructive-foreground': '#fcfcfa',
   error: '#b90b0e',
   // the eyebrow tints: each brand colour at 30% on the page
   'hope-tint': '#ffe7b7',
@@ -103,12 +104,12 @@ export const LIGHT = {
   'amber-tint': '#f1c39a',
   teal: '#3db6a4',
   'teal-tint': '#b7e4dd',
-  'tint-foreground': '#000000',
+  'tint-foreground': '#121212',
   // lines of the base grid (the base-grid utility)
   gridline: '#e6e6e6',
   // chart series, in order. On white the first series is Slate: Hope, Sky
   // and Field are under 3:1 on white, so they follow as supporting series.
-  'chart-1': '#000000',
+  'chart-1': '#121212',
   'chart-2': '#feaf0e',
   'chart-3': '#41aaeb',
   'chart-4': '#39c25e',
@@ -124,18 +125,18 @@ export const LIGHT = {
 // the accent and becomes the focus ring.
 export const DARK = {
   ...LIGHT,
-  background: '#000000',
-  foreground: '#ffffff',
+  background: '#121212',
+  foreground: '#fcfcfa',
   card: '#2a2a2a',
-  'card-foreground': '#ffffff',
+  'card-foreground': '#fcfcfa',
   popover: '#2a2a2a',
-  'popover-foreground': '#ffffff',
-  secondary: '#ffffff',
-  'secondary-foreground': '#000000',
+  'popover-foreground': '#fcfcfa',
+  secondary: '#fcfcfa',
+  'secondary-foreground': '#121212',
   muted: '#2a2a2a',
   'muted-foreground': '#b1b1b1',
   accent: '#333333',
-  'accent-foreground': '#ffffff',
+  'accent-foreground': '#fcfcfa',
   border: '#3d3d3d',
   input: '#7c7c7c',
   ring: '#feaf0e',
@@ -148,11 +149,11 @@ export const DARK = {
   // stronger than 30%: on Slate the muted versions read as Hope's and Field's tints
   'amber-tint': '#733711',
   'teal-tint': '#1f5a55',
-  'tint-foreground': '#ffffff',
+  'tint-foreground': '#fcfcfa',
   gridline: '#333333',
   // on Slate, Hope leads and every series reads
   'chart-1': '#feaf0e',
-  'chart-2': '#ffffff',
+  'chart-2': '#fcfcfa',
   'chart-3': '#41aaeb',
   'chart-4': '#39c25e',
   'chart-5': '#b1b1b1',

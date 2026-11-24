@@ -191,7 +191,7 @@ function LightboxPage({
         aria-label={`${image.alt}, ${percent === 'Fit' ? 'fitted' : percent}`}
         role="region"
         className={cn(
-          'relative max-h-[70vh] min-h-48 overflow-auto border border-border bg-white outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-ring',
+          'relative max-h-[70vh] min-h-48 overflow-auto border border-border bg-soft-white outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-ring',
           zoom === 'fit' && 'flex items-start justify-center',
         )}
       >

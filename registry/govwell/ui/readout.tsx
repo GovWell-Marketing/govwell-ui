@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 // the <Stat> style at a working size: a Regular-weight number with tight
 // tracking and tabular figures, its label beneath in muted Light type.
 // The tone marks the label with a small square in the status colour (the
-// figure itself stays Jet/White, since Field and amber aren't text colours);
+// figure itself stays black/white, since Field and amber aren't text colours);
 // attention turns the figure red, dim greys it out.
 //
 //   <Readout label="Issued" value="1,284" tone="ok" />

@@ -93,15 +93,19 @@ export function SamplePortal() {
       {/* for the demo only, as on the other sample pages: a black bar with a
           white ghost button (Hope with black type on hover) */}
       <div className="bg-slate px-4 py-2">
-        <a href="?example=app#/insights" className={buttonVariants({ variant: 'ghost', size: 'sm', className: 'text-white' })}>
+        <a href="?example=app#/insights" className={buttonVariants({ variant: 'ghost', size: 'sm', className: 'text-soft-white' })}>
           <ArrowLeft data-icon="inline-start" /> Back
         </a>
       </div>
 
       {/* no fill of its own: just Sign in, over the top of the photo (pulled down
           over it by -mb-16) */}
-      <header className="relative z-10 -mb-16 flex h-16 items-center justify-end gap-4 px-4 text-white md:px-6">
-        <Button size="sm" className="shrink-0 bg-white text-slate hover:bg-hope hover:text-slate" onClick={() => notHere('Signing in')}>
+      <header className="relative z-10 -mb-16 flex h-16 items-center justify-end gap-4 px-4 text-soft-white md:px-6">
+        <Button
+          size="sm"
+          className="shrink-0 bg-soft-white text-slate hover:bg-hope hover:text-slate"
+          onClick={() => notHere('Signing in')}
+        >
           Sign in
         </Button>
       </header>
@@ -121,11 +125,11 @@ export function SamplePortal() {
                 clear by 8rem, light enough for the treetops to show through */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/50 via-black/20 via-50% to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-soft-black/50 via-soft-black/20 via-50% to-transparent"
             />
             {/* in the photo's top-left corner, level with Sign in, white, in GT Standard */}
-            <p className="absolute top-0 left-4 flex h-16 items-center gap-2 font-sans text-xs font-light text-white md:left-6">
-              Powered by <GovWellLogo title="GovWell" className="h-4 text-white" />
+            <p className="absolute top-0 left-4 flex h-16 items-center gap-2 font-sans text-xs font-light text-soft-white md:left-6">
+              Powered by <GovWellLogo title="GovWell" className="h-4 text-soft-white" />
             </p>
           </div>
           {/* as wide as the Online Services grid below (64rem less its 1.5rem gutters) */}
@@ -239,7 +243,7 @@ export function SamplePortal() {
       </main>
 
       {/* two columns: "Questions?" large on the left, who to contact on the right */}
-      <footer className="bg-slate px-4 py-12 font-sans text-white md:px-6 md:py-16">
+      <footer className="bg-slate px-4 py-12 font-sans text-soft-white md:px-6 md:py-16">
         <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
           <h2 className="text-4xl leading-tight font-normal tracking-tight md:text-5xl">Questions?</h2>
           <div className="flex flex-col gap-6 text-sm font-light">

@@ -575,7 +575,7 @@ describe('VectorTileLayer', () => {
     expect(fill.opacity).toBe(0.12);
     expect(outline.opacity).toBe(1);
     expect(fill.fill()).toBe('#feaf0e');
-    expect(outline.color()).toBe('#000000');
+    expect(outline.color()).toBe('#121212');
     document.documentElement.style.setProperty('--hope', '#ffbb22');
     expect(fill.fill()).toBe('#ffbb22');
     document.documentElement.style.removeProperty('--hope');

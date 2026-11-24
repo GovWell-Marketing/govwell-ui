@@ -20,16 +20,16 @@ import { FORMS_DEMOS } from '@/docs/demos/forms';
 
 type SwatchSpec = { name: string; token: string; hex: string };
 
-// the core palette: Gold Standard, Jet and White
+// the core palette: Gold Standard, Soft Black and Soft White
 const CORE: SwatchSpec[] = [
   { name: 'Gold Standard', token: 'hope', hex: '#FEAF0E' },
-  { name: 'Jet', token: 'jet', hex: '#000000' },
-  { name: 'White', token: 'background', hex: '#FFFFFF' },
+  { name: 'Soft Black', token: 'soft-black', hex: '#121212' },
+  { name: 'Soft White', token: 'soft-white', hex: '#FCFCFA' },
 ];
 
 // the systems palette: the greys the interface is built from
 const SYSTEMS: SwatchSpec[] = [
-  { name: 'Slate', token: 'slate', hex: '#000000' },
+  { name: 'Slate', token: 'slate', hex: '#121212' },
   { name: 'Concrete', token: 'concrete', hex: '#7C7C7C' },
   { name: 'Cement', token: 'cement', hex: '#B1B1B1' },
   { name: 'Ash', token: 'ash', hex: '#D9D9D9' },

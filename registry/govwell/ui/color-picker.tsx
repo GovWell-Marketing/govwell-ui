@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 // moves, onValueCommit once when the popover closes on a changed colour.
 
 const GOVWELL_COLORS = [
-  { name: 'Slate', value: '#000000' },
+  { name: 'Slate', value: '#121212' },
   { name: 'Concrete', value: '#7c7c7c' },
   { name: 'Cement', value: '#b1b1b1' },
   { name: 'Ash', value: '#d9d9d9' },
@@ -58,7 +58,7 @@ function ColorPicker({
   size?: 'sm' | 'default';
 }) {
   const [open, setOpen] = React.useState(false);
-  const hex = normalizeHexColor(value) ?? '#000000';
+  const hex = normalizeHexColor(value) ?? '#121212';
   const atOpen = React.useRef(hex);
   const change = (next: string) => {
     const normalized = normalizeHexColor(next);
