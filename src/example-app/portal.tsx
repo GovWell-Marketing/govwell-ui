@@ -1,47 +1,60 @@
-import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { ArrowLeft, BookOpen, ChevronDown, CircleAlert, House, IdCard, Map as MapIcon, Wrench } from 'lucide-react';
+import { useEffect, useId, useState, type FormEvent, type ReactNode } from 'react';
+import { ArrowLeft, ChevronDown } from 'lucide-react';
 
 import { Button, buttonVariants } from '@/components/ui/button';
 import { GovWellLogo } from '@/components/ui/flag-mark';
 import { SegmentedControl, SegmentedControlItem } from '@/components/ui/segmented-control';
+import { cn } from '@/lib/utils';
 
-import { AiChatSparkIcon, LanguageIcon, SendIcon } from './icons';
+import {
+  AiChatSparkIcon,
+  AlertDiamondIcon,
+  HouseBuildingIcon,
+  IdCardIcon,
+  LanguageIcon,
+  LayoutDashboardIcon,
+  MapEditIcon,
+  ReceiptIcon,
+  SendIcon,
+} from './icons';
 
-// A sample of a town's public portal on GovWell, laid out like a live one: a
-// Slate header with the town's name and Sign in, a hero with the town's AI
-// ("What can we help with?") over an aerial photo of the town, the online services
-// as cards, and a footer with who to call. It's set as the City of
-// Twinsburg, Ohio, with the city's logo and the public contacts its live
-// portal lists. Nothing is sent; buttons say so. Open it with ?example=portal.
+// A sample of a town's public portal on GovWell: an aerial photo of the town
+// with "Powered by GovWell" and Sign in at the top left, the town's name and
+// wordmark bottom left, and the town's AI ("What can we help with?") in a
+// frosted-glass box on the right (under the name on a phone), its suggestions
+// taking turns to wear the AI's gradient outline. Then the online services as
+// cards and a footer with who to call. It's set as the City of Twinsburg, Ohio,
+// with the city's logo and the public contacts its live portal lists. Nothing
+// is sent; buttons say so. Open it with ?example=portal.
 
 const CITY = { name: 'City of Twinsburg', state: 'OH', short: 'Twinsburg' };
 
 const SERVICES: { icon: ReactNode; title: string; description: string }[] = [
   {
-    icon: <House />,
+    icon: <HouseBuildingIcon />,
     title: 'Building Permits',
     description:
       'Apply for a building permit. Projects may include new construction, additions, remodels, or trade work like electrical, plumbing, or mechanical.',
   },
-  { icon: <IdCard />, title: 'Business Licenses', description: 'Apply for, renew, and manage all business and professional licenses.' },
+  { icon: <IdCardIcon />, title: 'Business Licenses', description: 'Apply for, renew, and manage all business and professional licenses.' },
   {
-    icon: <CircleAlert />,
+    icon: <AlertDiamondIcon />,
     title: 'Code Complaint',
     description:
       'Submit a complaint to report potential code violations affecting property maintenance, zoning, safety, or nuisance issues in your area.',
   },
   {
-    icon: <Wrench />,
+    icon: <ReceiptIcon />,
     title: 'Contractor Registration',
     description: 'Register as a contractor to meet local requirements before performing work or applying for permits.',
   },
   {
-    icon: <MapIcon />,
+    icon: <MapEditIcon />,
     title: 'Planning & Zoning Applications',
     description:
       'Submit a Planning & Zoning application. This is required for land use changes, site developments, subdivisions, or requests such as variances and conditional uses.',
   },
-  { icon: <BookOpen />, title: 'Public Dashboards', description: 'Search for Addresses, Parcels, and Contractor Registrations' },
+  { icon: <LayoutDashboardIcon />, title: 'Public Dashboards', description: 'Search for Addresses, Parcels, and Contractor Registrations' },
 ];
 
 const PROMPTS = [
@@ -65,17 +78,17 @@ export function SamplePortal() {
   const [question, setQuestion] = useState('');
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [note, setNote] = useState<string | null>(null);
-  // the card hangs from the photo's bottom edge by its middle: the space above it
-  // is the photo's height less half the card's, measured as the card grows
-  const card = useRef<HTMLFormElement>(null);
-  const [cardHalf, setCardHalf] = useState(180);
+  // the suggestion whose turn it is to wear the AI's gradient outline. It moves
+  // down the list every 2s, holds while the pointer or focus is on the list
+  // (on the one pointed at or focused), and stays on the first under reduced
+  // motion
+  const [turn, setTurn] = useState(0);
+  const [held, setHeld] = useState(false);
   useEffect(() => {
-    const el = card.current;
-    if (!el || typeof ResizeObserver === 'undefined') return;
-    const measure = new ResizeObserver(() => setCardHalf(el.offsetHeight / 2));
-    measure.observe(el);
-    return () => measure.disconnect();
-  }, []);
+    if (held || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const tick = window.setInterval(() => setTurn((i) => (i + 1) % PROMPTS.length), 2000);
+    return () => window.clearInterval(tick);
+  }, [held]);
   const town = CITY.short;
 
   const ask = (text: string) => {
@@ -98,73 +111,74 @@ export function SamplePortal() {
         </a>
       </div>
 
-      {/* no fill of its own: just Sign in, over the top of the photo (pulled down
-          over it by -mb-16) */}
-      <header className="relative z-10 -mb-16 flex h-16 items-center justify-end gap-4 px-4 text-soft-white md:px-6">
-        <Button
-          size="sm"
-          className="shrink-0 bg-soft-white text-slate hover:bg-hope hover:text-slate"
-          onClick={() => notHere('Signing in')}
-        >
-          Sign in
-        </Button>
-      </header>
-
       <main className="flex-1">
-        {/* the hero: an aerial photo of Twinsburg (--photo tall) with the ask card
-            hung from its bottom edge by the card's middle */}
-        <section
-          aria-labelledby={`${id}-ask`}
-          className="relative isolate px-4 [--photo:22rem] md:[--photo:30rem]"
-          style={{ paddingTop: `max(1rem, calc(var(--photo) - ${cardHalf}px))` }}
-        >
-          <div className="absolute inset-x-0 top-0 -z-10 h-(--photo) overflow-hidden bg-muted">
-            {/* decorative, so no alt text */}
-            <img src={`${import.meta.env.BASE_URL}sample/twinsburg-aerial.jpg`} alt="" className="size-full object-cover object-top" />
-            {/* a fade down from the top edge, behind Sign in and "Powered by GovWell",
-                clear by 8rem, light enough for the treetops to show through */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-soft-black/50 via-soft-black/20 via-50% to-transparent"
+        {/* the hero: an aerial photo of Twinsburg fading to Soft Black at the
+            bottom, the town's name bottom left and the ask box in frosted glass
+            on the right. On a phone they stack: the photo, the name, then the
+            box on the black below */}
+        <section aria-labelledby={`${id}-ask`} className="relative isolate overflow-hidden bg-soft-black text-soft-white">
+          <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[36rem] md:inset-y-0 md:h-auto">
+            {/* decorative, so no alt text. On a phone the crop holds the barn
+                and the farmhouse, left of the photo's middle */}
+            <img
+              src={`${import.meta.env.BASE_URL}sample/twinsburg-aerial.jpg`}
+              alt=""
+              className="size-full object-cover object-[30%_50%] md:object-center"
             />
-            {/* in the photo's top-left corner, level with Sign in, white, in GT Standard */}
-            <p className="absolute top-0 left-4 flex h-16 items-center gap-2 font-sans text-xs font-light text-soft-white md:left-6">
+            {/* behind Powered by and Sign in */}
+            <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-soft-black/50 via-soft-black/20 via-50% to-transparent" />
+            {/* the bottom fades to Soft Black, under the town's name */}
+            <div className="absolute inset-x-0 bottom-0 h-3/4 bg-linear-to-b from-transparent via-soft-black/70 via-55% to-soft-black md:h-2/3 md:via-soft-black/50 md:via-60%" />
+          </div>
+
+          {/* Powered by GovWell at the left, Sign in at the right, its edge in line with the ask box below */}
+          <header className="flex h-16 items-center justify-between gap-8 px-4 md:px-12">
+            <p className="flex items-center gap-2 text-xs font-light">
               Powered by <GovWellLogo title="GovWell" className="h-4 text-soft-white" />
             </p>
-          </div>
-          {/* as wide as the Online Services grid below (64rem less its 1.5rem gutters) */}
-          <div className="relative mx-auto max-w-[calc(64rem-3rem)]">
-            {/* the card, taller than before: the page title at the top in black, then
-                (after 2.5rem of room) the question, suggestions and languages */}
-            <form
-              ref={card}
-              onSubmit={submit}
-              className="flex flex-col gap-10 bg-card px-6 py-8 text-card-foreground shadow-lg md:px-10 md:py-12"
+            <Button
+              size="sm"
+              className="shrink-0 bg-soft-white text-slate hover:bg-hope hover:text-slate"
+              onClick={() => notHere('Signing in')}
             >
-              {/* the title, with the city's script wordmark (black SVG)
-                  at the right, centred on the title's line; from md up, where
-                  there's room beside it */}
-              <div className="flex items-center justify-between gap-6">
-                <h1 className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <span className="text-4xl leading-tight font-normal tracking-tight md:text-5xl">
-                    {CITY.name}, {CITY.state}
-                  </span>
-                  <span className="text-lg font-light text-muted-foreground">Public Portal</span>
-                </h1>
-                <img
-                  src={`${import.meta.env.BASE_URL}sample/twinsburg-logo.svg`}
-                  alt="Twinsburg, Ohio"
-                  className="hidden h-auto w-36 shrink-0 md:block"
-                />
+              Sign in
+            </Button>
+          </header>
+
+          <div className="grid gap-8 px-4 pt-48 pb-10 md:min-h-[40rem] md:grid-cols-[minmax(0,1fr)_minmax(0,38rem)] md:items-end md:gap-12 md:px-12 md:pt-4 md:pb-12">
+            {/* the town: the city's wordmark on a Soft White tile, its name,
+                and Public Portal, all flush left with Powered by. The name and
+                Public Portal are pulled left by their first letter's side
+                bearing (C 0.037em, P 0.078em in GT Standard), so their ink,
+                not their boxes, lines up with the tile's edge */}
+            <div className="flex flex-col gap-4 md:pb-2">
+              <div className="flex size-20 items-center justify-center rounded-[3px] bg-soft-white">
+                <img src={`${import.meta.env.BASE_URL}sample/twinsburg-logo.svg`} alt="Twinsburg, Ohio" className="h-auto w-[84%]" />
               </div>
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <h2 id={`${id}-ask`} className="text-2xl leading-tight font-normal tracking-tight">
-                    What can we help with?
-                  </h2>
-                  <p className="text-sm text-muted-foreground">Get instant answers from {town} AI</p>
-                </div>
-                <div className="flex items-center gap-2 border border-input bg-background pr-2 focus-within:border-foreground hover:border-foreground">
+              <div className="flex flex-col gap-2">
+                <h1 className="-ml-[0.037em] text-4xl leading-tight font-normal tracking-tight sm:text-5xl lg:text-6xl">
+                  {CITY.name}, {CITY.state}
+                </h1>
+                <p className="-ml-[0.078em] text-lg font-light text-ash">Public Portal</p>
+              </div>
+            </div>
+
+            {/* the ask box: frosted glass with a white hairline and a soft
+                white glow. Inside, the colours are turned round (light type
+                throughout) so the shared controls read on the grey glass */}
+            <form
+              onSubmit={submit}
+              className="flex flex-col gap-8 rounded-[3px] border border-soft-white/70 bg-cement/35 px-6 py-10 shadow-[0_0_32px_rgb(250_250_249/0.3)] backdrop-blur-md [--foreground:var(--soft-white)] [--muted-foreground:var(--soft-white)] md:self-stretch md:px-8 md:py-12"
+            >
+              <div className="flex flex-col gap-1 text-center">
+                <h2 id={`${id}-ask`} className="text-2xl leading-tight font-normal tracking-tight md:text-3xl">
+                  What can we help with?
+                </h2>
+                <p className="text-sm text-muted-foreground md:text-base">Get instant answers from {town} AI</p>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex w-full items-center gap-2 rounded-[3px] border-2 border-transparent bg-soft-white pr-2 text-soft-black focus-within:border-hope">
                   <label htmlFor={`${id}-question`} className="sr-only">
                     Your question
                   </label>
@@ -172,26 +186,14 @@ export function SamplePortal() {
                     id={`${id}-question`}
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
-                    placeholder="Type here or select below…"
-                    className="h-11 min-w-0 flex-1 bg-transparent px-4 text-base font-light outline-none placeholder:text-muted-foreground"
+                    placeholder="Type here or select below"
+                    className="h-12 min-w-0 flex-1 bg-transparent px-4 text-base font-light text-soft-black outline-none placeholder:text-concrete"
                   />
-                  <Button type="submit" size="icon-xs" aria-label="Ask" disabled={!question.trim()}>
+                  <Button type="submit" size="icon-sm" aria-label="Ask" disabled={!question.trim()}>
                     <SendIcon />
                   </Button>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {PROMPTS.map((p) => (
-                    <Button key={p} type="button" variant="outline" size="xs" onClick={() => ask(p)}>
-                      {p}
-                    </Button>
-                  ))}
-                </div>
-                {note && (
-                  <p role="status" className="bg-sky-tint px-4 py-3 text-sm text-tint-foreground">
-                    {note}
-                  </p>
-                )}
-                <div className="flex items-center justify-end gap-3">
+                <div className="flex items-center gap-4">
                   <SegmentedControl
                     aria-label="Language"
                     value={language}
@@ -210,11 +212,59 @@ export function SamplePortal() {
                   </Button>
                 </div>
               </div>
+
+              {/* the suggestions, one under another. Whichever's turn it is is
+                  solid Soft White at full size and opacity, with a Hope glow and the AI's gradient band round
+                  its edge: an ai-fill layer masked to a 3px ring (ai-border
+                  paints its band under the fill, which would show through),
+                  sweeping once a turn. The rest, on an 80% fill so the glass
+                  shows through, ease out to 70% and 97% over 300ms. All keep a 3px clear edge so nothing shifts */}
+              <ul aria-label="Suggestions" className="flex flex-col gap-2">
+                {PROMPTS.map((p, i) => (
+                  <li key={p}>
+                    <button
+                      type="button"
+                      onClick={() => ask(p)}
+                      onMouseEnter={() => {
+                        setHeld(true);
+                        setTurn(i);
+                      }}
+                      onMouseLeave={() => setHeld(false)}
+                      onFocus={() => {
+                        setHeld(true);
+                        setTurn(i);
+                      }}
+                      onBlur={() => setHeld(false)}
+                      className={cn(
+                        'relative w-full origin-center rounded-[3px] border-[3px] border-transparent px-4 py-2 text-left text-sm font-light text-soft-black transition-[opacity,scale,box-shadow,background-color] duration-300 ease-out outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-hope motion-reduce:transition-none',
+                        i === turn
+                          ? 'scale-100 bg-soft-white opacity-100 shadow-[0_0_14px_rgb(254_175_14/0.55)]'
+                          : 'scale-[0.97] bg-soft-white/80 opacity-70',
+                      )}
+                    >
+                      {i === turn && (
+                        <span
+                          aria-hidden
+                          className="ai-fill pointer-events-none absolute -inset-[3px] rounded-[3px] p-[3px] [mask:linear-gradient(#000_0_0)_content-box_exclude,linear-gradient(#000_0_0)]"
+                          style={{ animationDuration: '2s' }}
+                        />
+                      )}
+                      {p}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+
+              {note && (
+                <p role="status" className="bg-sky-tint px-4 py-3 text-sm text-tint-foreground">
+                  {note}
+                </p>
+              )}
             </form>
           </div>
         </section>
 
-        <section aria-labelledby={`${id}-services`} className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-12 md:px-6">
+        <section aria-labelledby={`${id}-services`} className="flex flex-col gap-6 px-4 py-12 md:px-12">
           <h2 id={`${id}-services`} className="text-2xl font-normal tracking-tight">
             Online Services
           </h2>
@@ -242,12 +292,15 @@ export function SamplePortal() {
         </section>
       </main>
 
-      {/* two columns: "Questions?" large on the left, who to contact on the right */}
-      <footer className="bg-slate px-4 py-12 font-sans text-soft-white md:px-6 md:py-16">
-        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
-          <h2 className="text-4xl leading-tight font-normal tracking-tight md:text-5xl">Questions?</h2>
+      {/* two columns: "Questions?" large on the left, who to contact on the
+          right. Both columns' first lines are trimmed to the top of their
+          capitals (text-box), so "Questions?" and "Reach out" start level with
+          no line-height space above them */}
+      <footer className="bg-slate px-4 py-12 font-sans text-soft-white md:px-12 md:py-16">
+        <div className="grid gap-8 md:grid-cols-2">
+          <h2 className="text-4xl leading-tight font-normal tracking-tight [text-box:trim-start_cap_alphabetic] md:text-5xl">Questions?</h2>
           <div className="flex flex-col gap-6 text-sm font-light">
-            <p className="text-base">Reach out to our team.</p>
+            <p className="text-base [text-box:trim-start_cap_alphabetic]">Reach out to our team.</p>
             <div className="grid gap-6 sm:grid-cols-2">
               {CONTACTS.map((c) => (
                 <p key={c.team} className="flex flex-col gap-1">

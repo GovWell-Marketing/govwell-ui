@@ -61,24 +61,22 @@ export function SampleLogin() {
       {/* a GovWell brand photo, full bleed behind both halves; decorative, so no
           alt text. Under md a portrait cut (the pixel flag up in the sky, the
           valley below) replaces the landscape, whose flag the card would cover.
-          The picture is display: contents so the img stays the positioned layer */}
-      <picture className="contents">
+          The picture is the positioned layer itself, so it (and its <source>)
+          takes no grid cell and the card stays in the first column */}
+      <picture className="absolute inset-0 -z-10">
         <source media="(max-width: 767px)" srcSet={`${import.meta.env.BASE_URL}sample/sign-in-portrait.webp`} />
-        <img
-          src={`${import.meta.env.BASE_URL}sample/sign-in-landscape.webp`}
-          alt=""
-          className="absolute inset-0 -z-10 size-full object-cover"
-        />
+        <img src={`${import.meta.env.BASE_URL}sample/sign-in-landscape.webp`} alt="" className="size-full object-cover" />
       </picture>
 
-      {/* the card stays centred in the left half */}
-      {/* centred: on a phone that's the band between the portrait's two flags
-          (GovWell's up top, the US flag low on the right), so the card is
-          tighter there to leave both in view */}
-      <main className="relative flex min-h-dvh items-center justify-center px-4 py-20">
+      {/* from md up the card is centred in the left half, the same space either
+          side of it. On a phone, centred is the band between the portrait's two
+          flags (GovWell's up top, the US flag low on the right), so the card is
+          tighter there to leave both in view. Back and Help sit 24px in from
+          their edges, the page's gutter on both sides */}
+      <main className="relative flex min-h-dvh items-center justify-center px-6 py-20 md:col-start-1 md:row-start-1">
         {/* for the demo only: a real sign-in has nowhere to go back to. A plain
             ghost button: black type reads on the photo's pale sky */}
-        <a href="?example=app#/insights" className={buttonVariants({ variant: 'ghost', size: 'sm', className: 'absolute top-4 left-4' })}>
+        <a href="?example=app#/insights" className={buttonVariants({ variant: 'ghost', size: 'sm', className: 'absolute top-6 left-6' })}>
           <ArrowLeft data-icon="inline-start" /> Back
         </a>
         <div data-slot="sample-login" className="w-full max-w-md border border-border bg-card text-card-foreground shadow-lg">
