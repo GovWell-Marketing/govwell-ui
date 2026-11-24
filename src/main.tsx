@@ -104,14 +104,14 @@ function Preview() {
   return (
     <div className="min-h-screen">
       {/* the site's own header: Slate, the white logo, plain links */}
-      <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 bg-slate px-6 py-4 text-white">
+      <header className="flex flex-wrap items-center justify-between gap-4 border-b border-soft-white/10 bg-slate px-6 py-4 text-soft-white">
         <a href="#/" aria-label="GovWell UI, all components" className="flex items-center gap-3">
           {/* the logo SVG is GovWell's own, drawn in currentColor */}
           <span className="block w-32 [&_svg]:block [&_svg]:h-auto [&_svg]:w-full" dangerouslySetInnerHTML={{ __html: logo }} />
           <span className="text-sm text-cement">UI</span>
         </a>
         <div className="flex flex-wrap items-center gap-4">
-          <a href="?example=app#/insights" className="text-sm text-cement underline-offset-4 hover:text-white hover:underline">
+          <a href="?example=app#/insights" className="text-sm text-cement underline-offset-4 hover:text-soft-white hover:underline">
             Sample app
           </a>
           <div role="group" aria-label="Colour mode" className="flex gap-1">
@@ -123,7 +123,7 @@ function Preview() {
                 onClick={() => setMode(m.mode)}
                 className={cn(
                   'h-8 px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-hope',
-                  mode === m.mode ? 'bg-hope text-slate' : 'text-cement hover:text-white',
+                  mode === m.mode ? 'bg-hope text-slate' : 'text-cement hover:text-soft-white',
                 )}
               >
                 {m.label}

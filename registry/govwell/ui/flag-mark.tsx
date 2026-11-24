@@ -3,7 +3,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 // GovWell's logo, from GovWell's own artwork (govwell.com), drawn in
-// currentColor: Jet or Slate on light, White on dark. FlagMark is the mark on
+// currentColor: Soft Black or Slate on light, White on dark. FlagMark is the mark on
 // its own (the square and the flag), GovWellLogo the wordmark with the mark.
 // Both are decorative unless given a title.
 

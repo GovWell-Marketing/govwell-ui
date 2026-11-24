@@ -43,18 +43,19 @@ From the brand book and the live site (values read from govwell.com's CSS):
 
 Brand palette (from the book):
 
-| Token      | Hex       | Role                                                           |
-| ---------- | --------- | -------------------------------------------------------------- |
-| `jet`      | `#000000` | Logo, strongest black                                          |
-| `slate`    | `#000000` | Text on light; dark-mode ground (the site's body text is this) |
-| `concrete` | `#7c7c7c` | Borders, disabled, decorative greys                            |
-| `cement`   | `#b1b1b1` | Borders and rules                                              |
-| `ash`      | `#d9d9d9` | Hairlines, dividers                                            |
-| `base`     | `#ececec` | Subtle surfaces (the grid backgrounds in the book)             |
-| `white`    | `#ffffff` | Ground in light mode                                           |
-| `hope`     | `#feaf0e` | The accent: primary action, progress, highlights               |
-| `sky`      | `#41aaeb` | Extended palette: info, links on dark                          |
-| `field`    | `#39c25e` | Extended palette: success                                      |
+| Token        | Hex       | Role                                                           |
+| ------------ | --------- | -------------------------------------------------------------- |
+| `soft-black` | `#121212` | Core palette black (was Jet)                                   |
+| `soft-white` | `#fcfcfa` | Core palette white (was White)                                 |
+| `slate`      | `#000000` | Text on light; dark-mode ground (the site's body text is this) |
+| `concrete`   | `#7c7c7c` | Borders, disabled, decorative greys                            |
+| `cement`     | `#b1b1b1` | Borders and rules                                              |
+| `ash`        | `#d9d9d9` | Hairlines, dividers                                            |
+| `base`       | `#ececec` | Subtle surfaces (the grid backgrounds in the book)             |
+| `white`      | `#ffffff` | Ground in light mode                                           |
+| `hope`       | `#feaf0e` | The accent: primary action, progress, highlights               |
+| `sky`        | `#41aaeb` | Extended palette: info, links on dark                          |
+| `field`      | `#39c25e` | Extended palette: success                                      |
 
 The book also uses 30% and 50% tints of Hope, Sky, Field and Ash for the
 eyebrow chips and tiles. These become tokens (`hope-tint`, `sky-tint`, …).

@@ -241,7 +241,7 @@ function markerIcon({ tone = 'default', selected = false }: { tone?: MapTone; se
     tooltipAnchor: [0, -size / 2 - 2],
     popupAnchor: [0, -size / 2 - 2],
     html: `<span data-slot="map-marker-mark" data-tone="${tone}"${selected ? ' data-selected=""' : ''} class="${cn(
-      'block size-full border-2 border-white',
+      'block size-full border-2 border-soft-white',
       MARKER_FILL[tone],
       selected ? 'outline-2 outline-offset-1 outline-solid outline-slate' : 'outline-1 outline-solid outline-slate/60',
     )}"></span>`,

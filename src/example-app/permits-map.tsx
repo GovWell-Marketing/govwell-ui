@@ -51,7 +51,7 @@ const PIN = divIcon({
   iconSize: [26, 26],
   iconAnchor: [13, 25],
   popupAnchor: [0, -24],
-  html: `<svg data-slot="permit-pin" viewBox="-1 -1 26 26" width="26" height="26" aria-hidden="true"><path d="${PIN_PATH}" fill="#000000" fill-rule="evenodd" stroke="#ffffff" stroke-width="1.5" paint-order="stroke"/></svg>`,
+  html: `<svg data-slot="permit-pin" viewBox="-1 -1 26 26" width="26" height="26" aria-hidden="true"><path d="${PIN_PATH}" fill="#121212" fill-rule="evenodd" stroke="#fcfcfa" stroke-width="1.5" paint-order="stroke"/></svg>`,
 });
 
 export function PermitsMap({ rows, onOpen }: { rows: PermitRecord[]; onOpen: (record: PermitRecord) => void }) {

@@ -80,7 +80,7 @@ function FlagMarkDemo() {
     <div className="flex flex-wrap items-center gap-10">
       <GovWellLogo title="GovWell" className="h-8" />
       <FlagMark title="GovWell" className="h-8" />
-      <div className="flex items-center gap-4 bg-slate p-6 text-white">
+      <div className="flex items-center gap-4 bg-slate p-6 text-soft-white">
         <GovWellLogo title="GovWell" className="h-6" />
       </div>
       <div className="bg-hope p-6 text-slate">

@@ -17,8 +17,11 @@ const buttonGroupVariants = cva(
   {
     variants: {
       orientation: {
-        horizontal: '[&>[data-slot]~[data-slot]]:border-l-0',
-        vertical: 'flex-col [&>[data-slot]~[data-slot]]:border-t-0',
+        // buttons keep their 3px corners only at the strip's two ends
+        horizontal:
+          '[&>[data-slot]~[data-slot]]:border-l-0 [&>[data-slot=button]:not(:first-child)]:rounded-l-none [&>[data-slot=button]:not(:last-child)]:rounded-r-none',
+        vertical:
+          'flex-col [&>[data-slot]~[data-slot]]:border-t-0 [&>[data-slot=button]:not(:first-child)]:rounded-t-none [&>[data-slot=button]:not(:last-child)]:rounded-b-none',
       },
     },
     defaultVariants: {

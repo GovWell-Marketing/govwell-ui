@@ -89,9 +89,9 @@ type Brand = {
 function SidebarBrand({ brand, narrow, close }: { brand: Brand; narrow: boolean; close?: ReactNode }) {
   const name = brand.name ?? 'GovWell';
   return (
-    <div className={cn('flex h-16 shrink-0 items-center gap-2 border-b border-white/10 px-5', narrow && 'justify-center px-0')}>
+    <div className={cn('flex h-16 shrink-0 items-center gap-2 border-b border-soft-white/10 px-5', narrow && 'justify-center px-0')}>
       {/* named by its content (the logo's title, then the caption), so the visible caption is in the name */}
-      <a href={brand.href ?? '/'} className={cn('flex min-w-0 flex-col gap-1 text-white', sidebarFocus)}>
+      <a href={brand.href ?? '/'} className={cn('flex min-w-0 flex-col gap-1 text-soft-white', sidebarFocus)}>
         {narrow ? <FlagMark className="h-5" title={name} /> : <GovWellLogo className="h-5" title={name} />}
         {!narrow && brand.caption && <span className="truncate text-xs text-cement">{brand.caption}</span>}
       </a>
@@ -168,9 +168,9 @@ export function AppShell({
         attrs: item.attrs,
         'aria-current': active ? 'page' : undefined,
         className: cn(
-          'relative flex h-10 items-center gap-3 border-l-4 border-transparent pr-3 pl-4 text-sm font-light text-ash transition-colors hover:bg-white/5 hover:text-white',
+          'relative flex h-10 items-center gap-3 border-l-4 border-transparent pr-3 pl-4 text-sm font-light text-ash transition-colors hover:bg-soft-white/5 hover:text-soft-white',
           sidebarFocus,
-          active && 'border-hope bg-white/10 font-normal text-white',
+          active && 'border-hope bg-soft-white/10 font-normal text-soft-white',
           narrow && 'justify-center px-0 pr-1',
         ),
         children: (
@@ -217,7 +217,7 @@ export function AppShell({
         {shown.map((section) => (
           <div key={section.title} role="group" aria-label={section.title} className="space-y-0.5">
             {narrow ? (
-              <div aria-hidden className="mx-4 mb-2 h-px bg-white/10 first:hidden" />
+              <div aria-hidden className="mx-4 mb-2 h-px bg-soft-white/10 first:hidden" />
             ) : (
               <div aria-hidden className="eyebrow-type px-5 pb-2 text-xs text-cement">
                 {section.title}
@@ -226,7 +226,7 @@ export function AppShell({
             {section.items.map(row)}
           </div>
         ))}
-        {shownFooter.length > 0 && <div className="mt-auto space-y-0.5 border-t border-white/10 pt-4">{shownFooter.map(row)}</div>}
+        {shownFooter.length > 0 && <div className="mt-auto space-y-0.5 border-t border-soft-white/10 pt-4">{shownFooter.map(row)}</div>}
       </nav>
     );
   };
@@ -234,7 +234,7 @@ export function AppShell({
   const footerSlot = (narrow: boolean) => {
     const content = typeof sidebarFooter === 'function' ? sidebarFooter(narrow) : sidebarFooter;
     return content ? (
-      <div data-slot="app-shell-sidebar-footer" className={cn('border-t border-white/10 py-3', narrow ? 'px-2' : 'px-3')}>
+      <div data-slot="app-shell-sidebar-footer" className={cn('border-t border-soft-white/10 py-3', narrow ? 'px-2' : 'px-3')}>
         {content}
       </div>
     ) : null;
@@ -262,7 +262,7 @@ export function AppShell({
           data-slot="app-shell-sidebar"
           data-collapsed={collapsed || undefined}
           className={cn(
-            'sticky top-0 hidden h-screen shrink-0 flex-col border-r border-white/10 bg-slate text-white transition-[width] duration-150 md:flex print:hidden',
+            'sticky top-0 hidden h-screen shrink-0 flex-col border-r border-soft-white/10 bg-slate text-soft-white transition-[width] duration-150 md:flex print:hidden',
             collapsed ? 'w-16' : 'w-60',
           )}
         >
@@ -273,7 +273,7 @@ export function AppShell({
             type="button"
             onClick={toggle}
             className={cn(
-              'flex h-12 shrink-0 items-center justify-center gap-2 border-t border-white/10 text-sm text-cement transition-colors hover:text-white',
+              'flex h-12 shrink-0 items-center justify-center gap-2 border-t border-soft-white/10 text-sm text-cement transition-colors hover:text-soft-white',
               sidebarFocus,
             )}
             aria-label={collapsed ? 'Expand the sidebar' : 'Collapse the sidebar'}
@@ -299,7 +299,7 @@ export function AppShell({
               >
                 <Menu className="size-4" />
               </SheetTrigger>
-              <SheetContent side="left" showCloseButton={false} className="w-72 gap-0 border-r-0 bg-slate p-0 text-white">
+              <SheetContent side="left" showCloseButton={false} className="w-72 gap-0 border-r-0 bg-slate p-0 text-soft-white">
                 <SheetTitle className="sr-only">Navigation</SheetTitle>
                 <SidebarBrand
                   brand={brand}
@@ -307,7 +307,7 @@ export function AppShell({
                   close={
                     <SheetClose
                       aria-label="Close navigation"
-                      className={cn('ml-auto flex size-10 items-center justify-center text-cement hover:text-white', sidebarFocus)}
+                      className={cn('ml-auto flex size-10 items-center justify-center text-cement hover:text-soft-white', sidebarFocus)}
                     >
                       <XIcon className="size-4" />
                     </SheetClose>

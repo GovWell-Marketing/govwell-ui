@@ -137,7 +137,7 @@ export function UserMenu({
   const trigger = sidebar ? (
     <DropdownMenuTrigger
       className={cn(
-        'flex h-16 w-full min-w-0 items-center gap-3 border-t border-white/10 px-4 text-left text-white transition-colors hover:bg-white/5 data-popup-open:bg-white/10',
+        'flex h-16 w-full min-w-0 items-center gap-3 border-t border-soft-white/10 px-4 text-left text-soft-white transition-colors hover:bg-soft-white/5 data-popup-open:bg-soft-white/10',
         sidebarFocus,
         collapsed && 'justify-center px-0',
         className,

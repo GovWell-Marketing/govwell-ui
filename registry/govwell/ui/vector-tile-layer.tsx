@@ -112,7 +112,7 @@ function VectorTileLayer({
 // Each tone's token, with the light theme's value for when there's no page
 // (a test, a worker).
 const TONE_TOKEN: Record<MapTone, [token: string, fallback: string]> = {
-  default: ['slate', '#000000'],
+  default: ['slate', '#121212'],
   primary: ['hope', '#feaf0e'],
   ok: ['ok', '#39c25e'],
   info: ['info', '#41aaeb'],
@@ -199,7 +199,7 @@ class SquareSymbolizer implements PaintSymbolizer {
   draw(ctx: CanvasRenderingContext2D, geom: { x: number; y: number }[][]) {
     const s = this.size;
     ctx.fillStyle = this.fill();
-    ctx.strokeStyle = '#ffffff';
+    ctx.strokeStyle = '#fcfcfa';
     ctx.lineWidth = 2;
     for (const points of geom) {
       for (const p of points) {
