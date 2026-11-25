@@ -37,7 +37,7 @@ pnpm verify       # install every item into a fresh app in .verify/ and build it
 
 ## Styling conventions
 
-- **Square**: `rounded-none` everywhere (the radius token is 0), except buttons, which have 3px corners (`rounded-[3px]`; a button group keeps them only at its ends). Only avatars, radio dots and similar true circles use `rounded-full`. No pills.
+- **Square**: `rounded-none` everywhere (the radius token is 0), except buttons, which have 6px corners (`rounded-[6px]`; a button group keeps them only at its ends). Only avatars, radio dots and similar true circles use `rounded-full`. No pills.
 - **Type**: GT Standard. Body is Light (300, set on `body`), headlines and titles are Regular (400, `font-normal`) with `tracking-tight` at large sizes, never bold. UI labels, menu items and button text: Light or Regular. Bold (700) only for small subheads and table headings. Eyebrows and badges use the `eyebrow-type` utility (14px uppercase, 4% tracking). `font-mono` only for code (`kbd`).
 - **Colour** comes from tokens only:
   - `primary` = Hope with Slate text. The default `Button` (the main action) is `secondary` (black with white text, inverted in dark mode) and turns Hope with Slate text on hover. `secondary` = Slate (white in dark mode).
