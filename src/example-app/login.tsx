@@ -59,8 +59,8 @@ export function SampleLogin() {
   return (
     <div className="relative isolate grid min-h-dvh bg-slate text-foreground md:grid-cols-2">
       {/* a GovWell brand photo, full bleed behind both halves; decorative, so no
-          alt text. Under md a portrait cut (the pixel flag up in the sky, the
-          valley below) replaces the landscape, whose flag the card would cover.
+          alt text. Under md a portrait cut (clear sky up top, the valley and
+          the US flag below) replaces the landscape, whose flag the card would cover.
           The picture is the positioned layer itself, so it (and its <source>)
           takes no grid cell and the card stays in the first column */}
       <picture className="absolute inset-0 -z-10">
@@ -69,9 +69,8 @@ export function SampleLogin() {
       </picture>
 
       {/* from md up the card is centred in the left half, the same space either
-          side of it. On a phone, centred is the band between the portrait's two
-          flags (GovWell's up top, the US flag low on the right), so the card is
-          tighter there to leave both in view. Back and Help sit 24px in from
+          side of it. On a phone the card sits on the portrait's sky and is
+          tighter there, to leave the US flag low on the right in view. Back and Help sit 24px in from
           their edges, the page's gutter on both sides */}
       <main className="relative flex min-h-dvh items-center justify-center px-6 py-20 md:col-start-1 md:row-start-1">
         {/* for the demo only: a real sign-in has nowhere to go back to. A plain

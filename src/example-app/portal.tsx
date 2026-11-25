@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import {
   AiChatSparkIcon,
   AlertDiamondIcon,
+  ArrowRightIcon,
   HouseBuildingIcon,
   IdCardIcon,
   LanguageIcon,
@@ -178,7 +179,14 @@ export function SamplePortal() {
               </div>
 
               <div className="flex flex-col items-center gap-3">
-                <div className="flex w-full items-center gap-2 rounded-[3px] border-2 border-transparent bg-soft-white pr-2 text-soft-black focus-within:border-hope">
+                {/* the AI's gradient band round the box, the same masked ai-fill ring as
+                    the suggestion whose turn it is: 2px, 3px while you type */}
+                <div className="group/ask relative flex w-full items-center gap-2 rounded-[3px] border-2 border-transparent bg-soft-white pr-2 text-soft-black shadow-[0_0_14px_rgb(254_175_14/0.55)]">
+                  <span
+                    aria-hidden
+                    className="ai-fill pointer-events-none absolute -inset-[2px] rounded-[3px] p-[2px] [mask:linear-gradient(#000_0_0)_content-box_exclude,linear-gradient(#000_0_0)] group-focus-within/ask:-inset-[3px] group-focus-within/ask:p-[3px]"
+                    style={{ animationDuration: '2s' }}
+                  />
                   <label htmlFor={`${id}-question`} className="sr-only">
                     Your question
                   </label>
@@ -236,7 +244,7 @@ export function SamplePortal() {
                       }}
                       onBlur={() => setHeld(false)}
                       className={cn(
-                        'relative w-full origin-center rounded-[3px] border-[3px] border-transparent px-4 py-2 text-left text-sm font-light text-soft-black transition-[opacity,scale,box-shadow,background-color] duration-300 ease-out outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-hope motion-reduce:transition-none',
+                        'relative flex w-full origin-center items-center gap-3 rounded-[3px] border-[3px] border-transparent px-4 py-2 text-left text-sm font-light text-soft-black transition-[opacity,scale,box-shadow,background-color] duration-300 ease-out outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:outline-hope motion-reduce:transition-none',
                         i === turn
                           ? 'scale-100 bg-soft-white opacity-100 shadow-[0_0_14px_rgb(254_175_14/0.55)]'
                           : 'scale-[0.97] bg-soft-white/80 opacity-70',
@@ -249,6 +257,7 @@ export function SamplePortal() {
                           style={{ animationDuration: '2s' }}
                         />
                       )}
+                      <ArrowRightIcon className="size-3.5 shrink-0" />
                       {p}
                     </button>
                   </li>
