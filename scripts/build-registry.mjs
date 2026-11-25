@@ -269,7 +269,7 @@ const UI = {
   },
   button: {
     description:
-      'Square buttons in GT Standard Light: a black primary that turns Hope on hover, a Slate secondary, outline, ghost, destructive and link.',
+      'Buttons with 6px corners in GT Standard Light: a black primary that turns Hope on hover, a Slate secondary, outline, ghost, destructive and link.',
     deps: ['@base-ui/react', 'class-variance-authority'],
   },
   'button-group': {
